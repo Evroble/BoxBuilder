@@ -1,11 +1,31 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { connect } from 'react-redux'
+import { fetchProducts } from './store/products'
+import { fetchSubscriptions} from './store/subscriptions'
 
 //this is the page we'll be working out of
 
-function App() {
-  return (
-    <div className="App">
+class App extends React.Component {
+  constructor(){
+    super();
+    //local state below
+    this.state = {
+      maxValue: 0,
+      maxVolume: 0,
+      currentValue: 0,
+      currentVolume: 0,
+    }
+  }
+
+  componentDidMount(){
+    this.props.fetchProducts();
+    this.props.fetchSubscriptions();
+  }
+  render() {
+    return (
+      <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -22,6 +42,22 @@ function App() {
       </header>
     </div>
   );
+  }
+};
+
+const mapState = (state) => {
+  return{
+    products: state.products,
+    subscriptions: state.subscriptions
+  }
 }
 
-export default App;
+const mapDispatch = (dispatch) => {
+  return {
+    fetchProducts: () => dispatch(fetchProducts()),
+    fetchSubscriptions: () => dispatch(fetchSubscriptions())
+  }
+  
+}
+
+export default connect(mapState, mapDispatch)(App);

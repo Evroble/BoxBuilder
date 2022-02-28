@@ -12,7 +12,7 @@ const setSubscriptions = (subscriptions) => {
 };
 
 //Thunks
-export const fetchSubsciptions = () => {
+export const fetchSubscriptions = () => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get('https://mystifying-spence-dc3bda.netlify.app/build-a-box/subscriptions.json');
