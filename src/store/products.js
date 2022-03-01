@@ -16,7 +16,6 @@ export const fetchProducts = () => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get('https://mystifying-spence-dc3bda.netlify.app/build-a-box/products.json');
-            console.log(data.products, "this is the data we get back from our get request")
             dispatch(setProducts(data.products))
         } catch (error) {
             console.log(error, "Error in fetchProducts")
