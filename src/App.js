@@ -24,23 +24,35 @@ class App extends React.Component {
     this.props.fetchSubscriptions();
   }
   render() {
+    const subscriptions = this.props.subscriptions;
+    const products = this.props.products;
+    console.log(products, "This is our products in our render")
+
     return (
       <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <div className='subscriptionsContainer'>
+          <div className="selection">
+            <label for="subscription">What size subscription would you like?</label>
+            <select name="subscription">
+              {subscriptions.map((subscription) => (
+                <option value={subscription.name}>{subscription.name}</option>
+              ))} 
+            </select>
+          </div>
+
+        </div>
+        <div className='productsContainer'>
+          {products.map((product) => (
+            <div className='singleProduct' key={product.id}>
+              <h4>Name: {product.name}</h4>
+              <p>Description: {product.description}</p>
+              <p>Size: {product.volume}</p>
+              <p>Cost: ${product.points}</p>
+
+            </div>
+          ))}
+        </div>
+      </div>
   );
   }
 };

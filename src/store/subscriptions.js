@@ -16,7 +16,7 @@ export const fetchSubscriptions = () => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get('https://mystifying-spence-dc3bda.netlify.app/build-a-box/subscriptions.json');
-            dispatch(setSubscriptions(data))
+            dispatch(setSubscriptions(data.subscriptions))
         } catch (error) {
             console.log(error, "Error in fetchSubscriptions")
         }
