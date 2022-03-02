@@ -49,14 +49,13 @@ class App extends React.Component {
   componentDidMount(){
     this.props.fetchProducts();
     this.props.fetchSubscriptions();
-    console.log(this.props.subscriptions, 'these are our subscriptions in mount')
-    //setting the default value to first sub, which is what displays in our list. However it doesn't work on initial load
   }
   render() {
     const subscriptions = this.props.subscriptions;
     const products = this.props.products;
     const subDefault = subscriptions[0];
     console.log(this.state, "this is our current state")
+    console.log(subscriptions, "subscriptions in render")
 
     return (
       <div className="App">
@@ -64,8 +63,8 @@ class App extends React.Component {
           <div className="selection">
             <label htmlFor="subscription">What size subscription would you like?</label>
             {/* When we make our selection, that's when we store the max values */}
-            <select name="subscription" onChange={this.handleSubChange}>
-              <option disabled selected="Size"></option>
+            <select name="subscription" defaultInputValue="Size" onChange={this.handleSubChange}>
+              
               {subscriptions.map((subscription, index) => (
                 <option key={subscription.id} value={index}>{subscription.name}</option>
               ))} 
