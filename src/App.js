@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
+import Select from 'react-select'
 import { connect } from 'react-redux'
 import { fetchProducts } from './store/products'
 import subscriptions, { fetchSubscriptions} from './store/subscriptions'
@@ -37,28 +38,24 @@ class App extends React.Component {
 
   handleSubChange(event){
     //subscriptions is an array so we need the index in order to access the object
-    const id = event.target.value
-    console.log(this.subscriptions[id], "this is our event")
-    // this.setState({
-    //   maxValue: this.subscriptions[id].maxValue,
-    //   maxVolume: this.subsciptions[id].maxVolume,
-    // })
+    const idx = event.target.value;
+    this.setState({
+      maxValue: this.props.subscriptions[idx].maxValue,
+      maxVolume: this.props.subscriptions[idx].maxVolume,
+    })
 
   }
 
   componentDidMount(){
     this.props.fetchProducts();
     this.props.fetchSubscriptions();
-
-    //setting the default value to first sub, which is what displays in our list
-    this.setState({
-      maxValue:this.props.subscriptions[0].maxValue,
-      maxVolume:this.props.subscriptions[0].maxVolume,
-    })
+    console.log(this.props.subscriptions, 'these are our subscriptions in mount')
+    //setting the default value to first sub, which is what displays in our list. However it doesn't work on initial load
   }
   render() {
     const subscriptions = this.props.subscriptions;
     const products = this.props.products;
+    const subDefault = subscriptions[0];
     console.log(this.state, "this is our current state")
 
     return (
@@ -68,8 +65,9 @@ class App extends React.Component {
             <label htmlFor="subscription">What size subscription would you like?</label>
             {/* When we make our selection, that's when we store the max values */}
             <select name="subscription" onChange={this.handleSubChange}>
-              {subscriptions.map((subscription) => (
-                <option key={subscription.id} value={subscription.id}>{subscription.name}</option>
+              <option disabled selected="Size"></option>
+              {subscriptions.map((subscription, index) => (
+                <option key={subscription.id} value={index}>{subscription.name}</option>
               ))} 
             </select>
           </div>
