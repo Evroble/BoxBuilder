@@ -16,6 +16,10 @@ export const fetchProducts = () => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get('https://mystifying-spence-dc3bda.netlify.app/build-a-box/products.json');
+            //to add qty to each item, loop through and add, then dispatch
+            data.products.forEach((product) => (
+                product.qty = 0
+            ))
             dispatch(setProducts(data.products))
         } catch (error) {
             console.log(error, "Error in fetchProducts")
