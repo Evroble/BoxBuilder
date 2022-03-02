@@ -39,8 +39,7 @@ class App extends React.Component {
   //when the minus button is pressed, we want to decrease the product's qty, and increase the current value and volume based on the product we're on
   handleDecrement(event){
     const product = this.props.products[event.target.value]
-    console.log(product, "decrement event")
-    //potentially add a conditional here that says if button has been pressed but max value/volume are zero, alert user to select a subscription size first
+    //a conditional that says if button has been pressed but max value/volume are zero, alert user to select a subscription size first
     if(this.state.maxValue === 0){
       alert("Please select a box size before adding items")
     }
@@ -56,7 +55,6 @@ class App extends React.Component {
 
   handleIncrement(event){
     const product = this.props.products[event.target.value];
-    console.log(product, "increment event");
 
     if(this.state.maxValue === 0){
       alert("Please select a box size before adding items")
@@ -64,8 +62,10 @@ class App extends React.Component {
       const newValue = this.state.currentValue + product.points;
       const newVolume = this.state.currentVolume + product.volume
       //check if adding the item would go over the maxValue/volume
-      if(newValue > this.state.maxValue || newVolume > this.state.maxVolume){
-        alert("Adding that item will exceed the size of your box")
+      if(newValue > this.state.maxValue){
+        alert("Adding that item will exceed the value of your box!")
+      }else if(newVolume > this.state.maxVolume){
+        alert("Adding that item will exceed the size of your box!")
       }else{
         product.qty++;
         this.setState({
