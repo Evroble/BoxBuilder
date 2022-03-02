@@ -34,7 +34,7 @@ class App extends React.Component {
 
   handleSubmit(event){
     event.preventDefault();
-    //when submitted, we want to update our state to reflect the box order
+    alert("One box of delicious meals coming your way!")
   }
   //when the minus button is pressed, we want to decrease the product's qty, and increase the current value and volume based on the product we're on
   handleDecrement(event){
@@ -103,7 +103,6 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className='subscriptionsContainer'>
-          <div className="selection">
             <label htmlFor="subscription">What size subscription would you like?</label>
             {/* When we make our selection, that's when we store the max values */}
             {/* disabled selected is not proper JSX syntax, need to replace later */}
@@ -113,16 +112,21 @@ class App extends React.Component {
                 <option key={subscription.id} value={index}>{subscription.name}</option>
               ))} 
             </select>
-          </div>
-
         </div>
+
+        <div className="userBoxInfo">
+          <p>Current Value Points: {this.state.currentValue}</p>
+          <p>Current Volume: {this.state.currentVolume}</p>
+          <p> You can add {this.state.maxValue - this.state.currentValue} value points or {this.state.maxVolume - this.state.currentVolume} volume to your box! </p>
+        </div>
+
         <div className='productsContainer'>
           {products.map((product, index) => (
             <div className='singleProduct' key={product.id}>
               <h4>Name: {product.name}</h4>
               <p>Description: {product.description}</p>
               <p>Size: {product.volume}</p>
-              <p>Cost: ${product.points}</p>
+              <p>Value Points: {product.points}</p>
               {/* qty is currently updating for ALL items, not each individual item, so need to fix */}
               {/* <form onSubmit={this.handleSubmit}>
                 <label htmlFor='qty'>Quantity</label>
@@ -135,6 +139,10 @@ class App extends React.Component {
             </div>
           ))}
         </div>
+        <div className='saveBtn'>
+          <button onClick={this.handleSubmit}>Save</button>
+        </div>
+        
       </div>
   );
   }

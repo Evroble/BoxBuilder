@@ -31,6 +31,26 @@
   font-size: 20px ;
 }
 
+.userBoxInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  font-size: 15px ;
+}
+
+.saveBtn {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  font-size: 20px;
+  margin: 10px;
+}
+
 label{
   margin: 10px;
 }
