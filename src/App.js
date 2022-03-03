@@ -1,6 +1,5 @@
 import "./App.css";
 import React from "react";
-import Select from "react-select";
 import { connect } from "react-redux";
 import { fetchProducts } from "./store/products";
 import { fetchSubscriptions } from "./store/subscriptions";
