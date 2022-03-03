@@ -3,8 +3,7 @@
 }
 
 .productsContainer {
-  border: 2px solid black;
-  background-color: grey;
+  background-color: white;
   display: grid;
   grid-template-columns: auto auto auto;
   justify-content: center;
@@ -15,7 +14,7 @@
 }
 
 .singleProduct {
-  border: 2px dotted red;
+  box-shadow: 5px 5px 5px grey;
   padding: 0 25px;
   padding-bottom: 25px;
   margin: 10px;
@@ -40,12 +39,18 @@
   font-size: 15px ;
 }
 
-.saveBtn {
+.saveBtnBox {
   display:flex;
   justify-content: center;
   align-items: center;
+  background-color: #006f62;
 }
 
+.saveBtn {
+  border-radius: 10px;
+  background-color: white;
+  font-weight: bold;
+}
 button {
   font-size: 20px;
   margin: 10px;
@@ -53,4 +58,18 @@ button {
 
 label{
   margin: 10px;
+}
+
+#navbar {
+  background-color: #006f62;
+}
+
+img {
+  margin: auto;
+  background-color: white;
+}
+
+h2 {
+  color: #006f62;
+  text-align: center;
 }
