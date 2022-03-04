@@ -92,7 +92,7 @@ class App extends React.Component {
             What size subscription would you like?
           </label>
           {/* When we make our selection, that's when we store the max values */}
-          {/* disabled selected is not proper JSX syntax, need to replace later */}
+          {/* disabled selected is not proper JSX syntax, need to replace with MUI */}
           <select name="subscription" onChange={this.handleSubChange}>
             <option disabled selected="Size">Size</option>
             {subscriptions.map((subscription, index) => (
